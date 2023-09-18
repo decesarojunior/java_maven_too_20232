@@ -1,9 +1,12 @@
 
 package br.edu.ifsul.bcc.too.exercicios.respostas.topico3;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,9 +59,31 @@ public class TesteDatas {
         //System.out.println("data menor   - retorno -1: "+dataCalendar.compareTo(dataDate));
         //converter de java.util.Date para java.util.Calendar.
         
-        //Exercicio 3: converter a string  "25/09/1983" para java.util.Calendar
-        
-        //Exercicio 4: converter a string "25/09/1983" para java.util.Date
+        Calendar calendar_teste = Calendar.getInstance();
+          
+          
+        try {
+            //Exercicio 3: converter a string  "25/09/1983" para java.util.Calendar
+             //Exercicio 4: converter a string "25/09/1983" para java.util.Date
+             
+            //conversao para java.util.Date 
+            java.util.Date dt = formatador.parse("25/09/1983");
+            
+
+            //agora tem que converter de Date para Calendar.
+            calendar_teste.setTime(dt);
+            
+            //inicialização do tipo java.util.Calendar
+            Calendar calendar_teste_2 = Calendar.getInstance();
+            
+            //setando o Date no Calendar
+            calendar_teste_2.setTime(formatador.parse("25/09/1983"));
+                    
+           
+        } catch (ParseException ex) {
+            System.out.println("erro: "+ex.getLocalizedMessage());
+            ex.printStackTrace();
+        }
         
         
     }
