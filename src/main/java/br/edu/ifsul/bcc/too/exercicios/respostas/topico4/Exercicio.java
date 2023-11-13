@@ -4,9 +4,14 @@
  */
 package br.edu.ifsul.bcc.too.exercicios.respostas.topico4;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,10 +24,54 @@ public class Exercicio {
         
         imprimePessoas(getPessoas());
     }    
-   
+    //exercicio 3:
+    //criar um método que gere um cliente (obter dados via JOptionPane).
+    //criar um metodo que gere um produto (obter dados via JOptionPane).
+    //criar um metodo que gere um foto (obter dados via JOptionPane).
+    //criar um metodo que gera um pedido (cliente, produto e foto).
+    //criar um metodo que imprima um pedido (todas as informações).
+    private void exercicio3(){
+        Cliente c = generateCliente();
+        Produto p = null;
+        Foto f = null;
+        Pedido pd = null;
+        imprimiPedido(pd);
+    }
+    private Cliente generateCliente(){
+        Cliente c = null;
+        try {
+            
+            String dtnasc = JOptionPane.showInputDialog(null,
+                    "Data",  "Informe data no formato dd/MM/yyyy",
+                    JOptionPane.PLAIN_MESSAGE);
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            
+            //parse do dtnasc para o java.util.Date usando SimpleDateFormat
+            java.util.Date dt = sdf.parse(dtnasc);
+            
+            c = new Cliente();
+            
+            Calendar cld = Calendar.getInstance();
+            cld.setTime(dt);
+            
+            //conversao de Date para Calendar
+            c.setData_nascimento(cld);
+            return c;
+        } catch (ParseException ex) {
+            
+            ex.printStackTrace();
+        }
+        return c;
+    }
+    private void imprimiPedido(Pedido p){
+        System.out.println(p);
+    }
+    
+    
     //criar um método que retorne uma colecao de Pessoa.
     //essa colecao deverá ter 5 pessoas (1 Func, 2 Cliente e 2 Aluno).
-    
+
     private Collection<Pessoa> getPessoas(){
         Collection<Pessoa> cltP = new ArrayList();
         Pessoa p = new Funcionario();

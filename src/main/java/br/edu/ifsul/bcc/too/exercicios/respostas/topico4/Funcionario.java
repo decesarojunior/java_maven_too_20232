@@ -2,6 +2,7 @@
 package br.edu.ifsul.bcc.too.exercicios.respostas.topico4;
 
 import java.util.Calendar;
+import java.util.Collection;
 
 /**
  *
@@ -16,7 +17,9 @@ public class Funcionario extends Pessoa {
     private Calendar data_admissao;
     
     // o funcionario poderia estar vinculado com vários cursos.
-
+    // um curso pode estar vinculado a nenhum ou a vários funcionarios.
+    private Collection<CursoAprimoramento> cursos;
+    
     public Funcionario() {
     }
 
@@ -40,7 +43,15 @@ public class Funcionario extends Pessoa {
     public void setData_admissao(Calendar data_admissao) {
         this.data_admissao = data_admissao;
     }
-    
+
+    public Collection<CursoAprimoramento> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Collection<CursoAprimoramento> cursos) {
+        this.cursos = cursos;
+    }
+    //implementar o metodo setCurso.
     
     
 }
