@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.edu.ifsul.bcc.too.exercicios.respostas.topico4;
 
 import java.text.ParseException;
@@ -32,40 +29,59 @@ public class Exercicio {
     //criar um metodo que imprima um pedido (todas as informações).
     private void exercicio3(){
         Cliente c = generateCliente();
-        Produto p = null;
-        Foto f = null;
-        Pedido pd = null;
+        Produto p = generateProduto();
+        Foto f = generateFoto(p);
+        Pedido pd = generatePedido(c, p);
         imprimiPedido(pd);
+    }
+    private void imprimiPedido(Pedido p){
+        
+        System.out.println(p.getCodigo());
+        System.out.println("CPF: "+ p.getCliente().getCpf());
+        System.out.println("data: "+p.getCliente().getData_nascimento_string());
+        for(Produto pdt : p.getProdutos()){
+            System.out.println("produto: "+pdt.getId());
+            for(Foto ft : pdt.getFotos()){
+                System.out.println("codigo: "+ft.getCodigo());
+            }
+        }
+    }
+    private Pedido generatePedido(Cliente cliente, Produto produto){
+        Pedido p = new Pedido();
+        p.setCliente(cliente);
+        p.setProduto(produto);
+        //f.set....via JOptionPane ...
+        return p;
+    }
+    private Foto generateFoto(Produto produto){
+        Foto f = new Foto();
+        f.setProduto(produto);
+        //f.set....via JOptionPane ...
+        return f;
+    }
+    private Produto generateProduto(){
+        Produto p = null;
+        
+        
+        return p;
     }
     private Cliente generateCliente(){
         Cliente c = null;
-        try {
+       
             
-            String dtnasc = JOptionPane.showInputDialog(null,
-                    "Data",  "Informe data no formato dd/MM/yyyy",
-                    JOptionPane.PLAIN_MESSAGE);
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            
-            //parse do dtnasc para o java.util.Date usando SimpleDateFormat
-            java.util.Date dt = sdf.parse(dtnasc);
-            
-            c = new Cliente();
-            
-            Calendar cld = Calendar.getInstance();
-            cld.setTime(dt);
-            
-            //conversao de Date para Calendar
-            c.setData_nascimento(cld);
-            return c;
-        } catch (ParseException ex) {
-            
-            ex.printStackTrace();
-        }
+        String dtnasc = JOptionPane.showInputDialog(null,
+                "Data",  "Informe data no formato dd/MM/yyyy",
+                JOptionPane.PLAIN_MESSAGE);
+
+
+        c = new Cliente();
+
+
+        //conversao de Date para Calendar
+        c.setData_nascimento(dtnasc);
+           
+       
         return c;
-    }
-    private void imprimiPedido(Pedido p){
-        System.out.println(p);
     }
     
     

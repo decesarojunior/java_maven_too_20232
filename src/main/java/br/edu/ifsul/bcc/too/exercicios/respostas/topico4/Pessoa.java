@@ -1,7 +1,11 @@
 
 package br.edu.ifsul.bcc.too.exercicios.respostas.topico4;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,9 +80,32 @@ public class Pessoa {
     public Calendar getData_nascimento() {
         return data_nascimento;
     }
+    
+    public String getData_nascimento_string() {
+        if(this.data_nascimento != null){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return sdf.format(this.data_nascimento.getTime());
+        }else{
+            return null;
+        }
+    }
 
     public void setData_nascimento(Calendar data_nascimento) {
         this.data_nascimento = data_nascimento;
+    }
+    
+    public void setData_nascimento(String data_nascimento) {
+        if(data_nascimento != null){
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar c = Calendar.getInstance();                
+                c.setTimeInMillis(sdf.parse(data_nascimento).getTime());
+                this.data_nascimento = c;
+            } catch (ParseException ex) {
+                this.data_nascimento = null;
+            }
+        }
+       
     }
 
     public Float getPeso() {
